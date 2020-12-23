@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<input type="text" id="txtNombre" />
+		<div id="contenidoNombre"></div>
+
+        <button id="btnLimpiar">Limpiar</button>
+        
+
+
+        <script src="pagina.js"></script>
+        
+        <script>
+            // Datos que maneja (nombre)
+            // Cambios en el HTML
+            /*
+             var txtNombre = 
+                document.
+                getElementById("txtNombre");
+
+            var btnLimpiar = 
+                document.
+                getElementById("btnLimpiar");
+
+                var contenidoNombre = document.getElementById("contenidoNombre");
+
+			txtNombre.oninput = function () {
+                contenidoNombre.innerHTML = txtNombre.value;
+			};
+
+			btnLimpiar.onclick = function () {
+                contenidoNombre.innerHTML = '';
+			};*/           
+        </script>
+
+
+		<script>
+            
+            var txtNombre = 
+                document.
+                getElementById("txtNombre");
+
+            var btnLimpiar = 
+                document.
+                getElementById("btnLimpiar");
+
+			txtNombre.oninput = function () {
+				actualizarPagina({
+					nombreActual: txtNombre.value,
+				});
+			};
+
+			btnLimpiar.onclick = function () {
+				actualizarPagina({
+					nombreActual: "",
+				});
+            };
+            
+		</script>
+	</body>
+</html>
