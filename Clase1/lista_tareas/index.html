@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<link rel="stylesheet" href="css/styles.css" />
+	</head>
+	<body>
+		<header>
+			<input type="text" class="campo" id="txtTarea" />
+			<button id="btnAgregar">Agregar</button>
+		</header>
+
+		<main>
+			<ul id="ulTareas"></ul>
+		</main>
+
+		<script src="js/Pagina.js"></script>
+		<script>
+			actualizarPagina("hola", [
+				"Hacer las compras",
+				"Terminar el modulo JS",
+				"Hacer el mockup para el sitio de Carla",
+				"Hacer el presupuesto del mes",
+			]);
+		</script>
+	</body>
+</html>
