@@ -42,4 +42,5 @@ function actualizarPagina(textoActual, listaTareas) {
     // TODO: ¿Como se pueden insertar MUCHOS li con UN SOLO CAMBIO al DOM?
 
     ulTareas.appendChild(nuevoLi);
+    
 }

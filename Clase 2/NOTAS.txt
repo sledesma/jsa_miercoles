@@ -1,0 +1,2 @@
+* Timer (Usar para explicar el tema de la clase)
+* ¿Como agregar varios items a la lista con un solo impacto al DOM? (DocumentFragment)

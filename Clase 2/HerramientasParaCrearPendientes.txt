@@ -1,0 +1,4 @@
+> Eventos (!!!) - 2 y 3
+> Asincrónico
+    > Petición XMLHttpRequest - 4, 5 y 6
+    > Promesas (!!!) - 7
