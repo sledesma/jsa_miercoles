@@ -17,6 +17,19 @@
 			>EducacionIT</a
 		>
 
+		<a 
+			href="#"
+			class="link-confirmacion"
+			id="lnkProcesarTareas"
+		>Procesar tareas</a>
+
 		<script src="LinkConfirmacion.js"></script>
+		<script>
+			document.querySelector('#lnkProcesarTareas').onclick = function() {
+				alert('Procesando tareas');
+			}
+
+			console.log(document.querySelector('#lnkProcesarTareas').onclick);
+		</script>
     </body>
 </html>
