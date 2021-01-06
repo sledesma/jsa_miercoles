@@ -327,19 +327,19 @@
                             <form action="http://google.com" id="frmContacto">
                                 <div>
                                     Nombre:
-                                    <input type="text" name="nombre" id="txtNombre" />
+                                    <input type="text" name="nombre" id="txtNombre" required />
                                 </div>
                                 <div>
                                     Email:
-                                    <input type="text" name="email" id="txtEmail" />
+                                    <input type="email" name="email" id="txtEmail" required />
                                 </div>
                                 <div>
                                     Asunto:
-                                    <input type="text" name="asunto" id="txtAsunto" />
+                                    <input type="text" name="asunto" id="txtAsunto" required />
                                 </div>
                                 <div>
                                     Mensaje:
-                                    <textarea name="mensaje" id="txtMensaje" cols="30" rows="10"></textarea>
+                                    <textarea name="mensaje" id="txtMensaje" cols="30" rows="10" required></textarea>
                                 </div>
                                 <button>Enviar</button>
                             </form>
@@ -420,9 +420,9 @@
                     },
                     esValido: false
                 },
-            ],
+            ];
 
-            erroresActuales = [];
+            let erroresActuales = [];
 
            
 
