@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<ul>
+			<li>
+				<a href="http://google.com" class="link_confirmacion">Home</a>
+			</li>
+			<li>
+				<a href="http://educacionit.com" class="link_confirmacion"
+					>Servicios</a
+				>
+			</li>
+			<li>
+				<a href="http://youtube.com" class="link_confirmacion"
+					>Clientes</a
+				>
+			</li>
+			<li>
+				<a href="http://linkedin.com" class="link_confirmacion"
+					>Contacto</a
+				>
+			</li>
+		</ul>
+
+		<script>
+			/**
+			 *
+			 * Click reutilizable para vínculos <a>.
+             * 
+             * La clase link_confirmacion se encargará
+             * de poner un bloqueo al paso del link.
+             * Si se acepta el mensaje, continua
+             * la navegación.
+             * 
+             * Al hacer click en el link
+             *  Preguntar si desea salir
+             *  Si responde NO, entonces
+             *      Cancelar navegación
+			 *
+			 */
+
+            // Tareas inmediatas
+            
+            const links = document.querySelectorAll('.link_confirmacion')
+
+            links.forEach(function(link){
+                link.addEventListener('click', clickLink);
+            });
+
+            // Tareas pendientes
+            function clickLink(e) {
+                
+                const continuarNavegacion = confirm('¿Desea continuar?')
+
+                if(!continuarNavegacion) {
+                    e.preventDefault();
+                }
+               
+            }
+		</script>
+	</body>
+</html>
