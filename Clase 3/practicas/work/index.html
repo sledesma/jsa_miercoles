@@ -327,15 +327,15 @@
                             <form action="http://google.com" id="frmContacto">
                                 <div>
                                     Nombre:
-                                    <input type="text" name="nombre" id="txtNombre">
+                                    <input type="text" name="nombre" id="txtNombre" />
                                 </div>
                                 <div>
                                     Email:
-                                    <input type="text" name="email" id="txtEmail">
+                                    <input type="text" name="email" id="txtEmail" />
                                 </div>
                                 <div>
                                     Asunto:
-                                    <input type="text" name="asunto" id="txtAsunto">
+                                    <input type="text" name="asunto" id="txtAsunto" />
                                 </div>
                                 <div>
                                     Mensaje:
@@ -367,21 +367,82 @@
         <script src="js/scripts.js"></script>
         <script>
 
-            ////////// Datos necesarios //////////
+            ////////// Estructuras y datos necesarios //////////
             const
                 frmContacto = document.querySelector('#frmContacto'),
                 txtNombre = document.querySelector('#txtNombre'),
                 txtAsunto = document.querySelector('#txtAsunto'),
                 txtEmail = document.querySelector('#txtEmail'),
-                txtMensaje = document.querySelector('#txtMensaje')
+                txtMensaje = document.querySelector('#txtMensaje');
+            /*
+            La estrucutra de datos 'errores' contendrá todos los
+            distintos errores. Lo particular de gestionar los errores
+            con un array en este caso, es que puedo agregar errores
+            en un parte distinta de la cual los verifico.
+            errores = [
+                {
+                    id: '',
+                    listaErrores: [
+                        '',
+                        ''
+                    ]
+                }
+            ]
+            Ademas se registran los errores iniciales
+            */
+            const campos = [
+                {
+                    id: 'txtNombre',
+                    validaciones: {
+                        req: 'El nombre está vacío',
+                        min3: 'El nombre debe tener 3 caracteres como mínimo'
+                    },
+                    esValido: false
+                },
+                {
+                    id: 'txtAsunto',
+                    validaciones: {
+                        req: 'El asunto está vacío'
+                    },
+                    esValido: false
+                },
+                {
+                    id: 'txtEmail',
+                    validaciones: {
+                        req: 'El email está vacío'
+                    },
+                    esValido: false
+                },
+                {
+                    id: 'txtMensaje',
+                    validaciones: {
+                        req: 'El mensaje está vacío'
+                    },
+                    esValido: false
+                },
+            ],
+
+            erroresActuales = [];
+
+           
 
             ////////// Tareas inmediatas //////////
             // Registrar listener del evento 'submit' de '#frmContacto'
             frmContacto.addEventListener('submit', frmContacto_submit);
 
+            // Registrar listener del evento 'blur' de '#txtNombre'
+            txtNombre.addEventListener('blur', Validacion_blur);
+            txtEmail.addEventListener('blur', Validacion_blur);
+            txtAsunto.addEventListener('blur', Validacion_blur);
+            txtMensaje.addEventListener('blur', Validacion_blur);
 
-            ////////// Tareas pendientes //////////
-            // Validar el formulario al disparar el 'submit'
+
+
+
+            ////////// Tareas en espera //////////
+            /**
+             * Validar el formulario al disparar el 'submit'
+             */ 
             function frmContacto_submit(e) {
                 // 1) Cancelar el envio
                 e.preventDefault(); // Cancelamos el comportamiento por defecto
@@ -389,15 +450,62 @@
                 // 2) Definir cuando se envia
                 let enviarFormulario = true;
 
-                if(txtNombre.value == '') enviarFormulario = false;
-                if(txtAsunto.value == '') enviarFormulario = false;
-                if(txtEmail.value == '') enviarFormulario = false;
-                if(txtMensaje.value == '') enviarFormulario = false;
+                campos.forEach(function(error){
+                    if(error.esValido === false) 
+                        enviarFormulario = false;
+                });
 
+                // 3) Enviar
                 if(enviarFormulario) {
                     e.target.submit();
+                } else {
+                    alert('Hay errores. Verifica en la consola');
+                    console.log(erroresActuales);
+                    erroresActuales = [];
                 }
                 
+            }
+
+            /**
+             * Agregar o quitar error al cambiar el txtNombre
+             */ 
+            function Validacion_blur(e) {
+
+                const handler = campos.find(function(val){
+                    return val.id == e.target.id
+                });
+
+                if(handler) {
+                    
+                    let campoValido = true;
+
+
+                    for (const validacion in handler.validaciones) {
+
+                        switch(validacion) {
+
+                            case 'req':
+                                if(e.target.value == '') {
+                                    erroresActuales.push(handler.validaciones[validacion])
+                                    campoValido = false;
+                                }
+                                break;
+
+                            case 'min3':
+                                if(e.target.value.length < 3) {
+                                    erroresActuales.push(handler.validaciones[validacion])
+                                    campoValido = false;
+                                }
+                                break;
+
+                        }
+                        
+                    }
+
+                    handler.esValido = campoValido;
+
+                }
+
             }
 
         </script>
