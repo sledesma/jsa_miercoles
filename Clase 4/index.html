@@ -32,6 +32,14 @@
 			#posts-container {
 				padding: 10px;
 			}
+
+            #botones {
+                text-align: center;
+            }
+
+            #botones a {
+                padding: 10px;
+            }
 		</style>
 	</head>
 	<body>
@@ -41,7 +49,15 @@
 			</div>
 		</div>
 
-		<div class="container" id="posts-container"></div>
+		<div class="container">
+            <div class="row justify-content-center">
+                <div class="col" id="botones">
+                    <a href="#" class="btn" id="btnAtras">Atras</a>
+                    <a href="#" class="btn" id="btnSiguiente">Siguiente</a>
+                </div>
+            </div>
+			<div class="row justify-content-center" id="posts-container"></div>
+		</div>
 
 		<script
 			src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"
@@ -54,59 +70,8 @@
 			crossorigin="anonymous"
 		></script>
 
-		<script>
-			// El único rol que puede tomar HTML/CSS/JS es el del CLIENTE
-			// XMLHttpRequest nos da las herramientas para crear una nueva
-			// petición HTTP.
-
-			/**TAREAS INMEDIATAS**/
-			// 1. Crear la petición (y configurarla)
-			const peticion = new XMLHttpRequest();
-
-			peticion.responseType = "json";
-
-			// 2. Abrir la conexión
-			/**
-			 * 1) URL: ¿Qué pido?  !!!!
-			 * 2) Método: ¿Para qué lo pido?
-			 *      Leer: GET
-			 *      Escribir: POST, PUT / PATCH, DELETE
-			 */
-			peticion.open("GET", "https://pokeapi.co/api/v2/pokemon");
-
-			// 3. Enviar la petición
-			peticion.send();
-
-			// 4. Escuchar el evento 'load'
-			peticion.addEventListener("load", peticion_CargaCompleta);
-
-
-            
-            /**TAREAS PENDIENTES**/
-			function peticion_CargaCompleta(e) {
-				// ACA tengo la respuesta del servidor
-				console.log(e.target.response);
-
-				// ACA, CUANDO TENGO LA RESPUESTA, lleno los posts
-				const 
-                    pokes = e.target.response.results,
-                    postContainer = document.querySelector('#posts-container');
-
-                postContainer.innerHTML = '';
-
-                pokes.forEach(function(p){
-                    postContainer.innerHTML += pokeTemplate(p)
-                }); 
-			}
-
-			/** UTILIDADES **/
-			const pokeTemplate = (
-				poke
-			) => `<div class="row justify-content-center">
-                                                <div class="col-8 post-item">
-                                                    ${poke.name}
-                                                </div>
-                                            </div>`;
-		</script>
+		
+        <script src="js/postsContainer.js"></script>
+        <!---->
 	</body>
 </html>
