@@ -1,0 +1,21 @@
+API History
+
+
+1) history.state (Solo lectura)
+    Es una variable, como cualquier otra, que tiene la particularidad
+    de estar vinculada a los cambios de historial
+
+2) history.pushState()
+    Es una función que introduce una nueva entrada en el historial
+
+3) history.replaceState()
+    Es una función que cambia el valor del state actual SIN introducir
+    una nueva entrada en el historial
+
+
+
+http://google.com
+http://youtube.com
+http://127.0.0.1:5500/
+[F] http://127.0.0.1:5500/ state = 'Hola mundo' <-
+[F] http://127.0.0.1:5500/ state = 'Nuevo estado' 
