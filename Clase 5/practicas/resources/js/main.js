@@ -74,7 +74,7 @@ function Index_DataLoaded(json, template) {
         link.addEventListener("click", function(e) {
             e.preventDefault();
             // Renderizar Detalle
-            history.pushState(pages[1], "", "");
+            history.pushState(pages[1], "", '');
             loadPage();
         });
     });
