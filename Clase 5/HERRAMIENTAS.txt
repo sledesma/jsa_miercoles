@@ -1,0 +1,20 @@
+Static Site Generation:
+* https://jamstack.org/generators/
+* Gatsby (React), Nuxt (Vue)
+
+Server-Side Rendering:
+* Lenguajes del lado del servidor
+    - PHP (Laravel / Symphony)
+    - JavaScript (Node.Js)
+    - Python (Django)
+    - C#.Net Core
+    - Java (Spring)
+
+Client-Side Rendering:
+* Angular
+* Angular.Js
+* React
+* Vue
+
+PARA TODOS:
+- HTML, CSS y JS
