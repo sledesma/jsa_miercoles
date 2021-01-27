@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+
+		<style>
+			html,
+			body {
+				margin: 0;
+				padding: 0;
+			}
+
+			nav {
+				background-color: #ccc;
+				width: 20%;
+				height: 100vh;
+				position: fixed;
+			}
+
+			main {
+				margin-left: 20%;
+			}
+
+			.color {
+				padding: 40px;
+				text-align: center;
+				cursor: pointer;
+                transition: all 0.3s;
+			}
+
+            .color-dragging {
+                transform: scale(1.2);
+            }
+		</style>
+	</head>
+	<body>
+		<nav>
+			<div class="color" data-color="red">
+				Rojo
+			</div>
+			<div class="color" data-color="green">
+				Verde
+			</div>
+			<div class="color" data-color="blue">
+				Marron
+			</div>
+		</nav>
+
+		<main>Hola</main>
+
+		<script>
+			// API HTML Drag And Drop
+			// F (funciones): -
+			// E (eventos):
+			//  Al DOM: drag, dragend, dragenter, dragexit, dragleave, dragover, dragstart, drop
+			// O (objetos): -
+            const colors = document.querySelectorAll('.color');
+
+            colors.forEach(color => {
+                color.draggable = true;
+                color.style = `background-color: ${color.dataset.color}`;
+                addDndListeners(color);
+            });
+
+            function addDndListeners(elemento) {
+                elemento.addEventListener('drag', e => {
+                    if(e.screenX == 0 && e.screenY == 0 && elemento.classList.contains('color-dragging')) {
+                        elemento.classList.remove('color-dragging')
+                    } else {
+                        elemento.classList.add('color-dragging')
+                    }
+                    console.log(e);
+                })
+            }
+		</script>
+	</body>
+</html>
