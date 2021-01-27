@@ -40,9 +40,9 @@
 	</head>
 	<body>
 		<nav>
-			<div class="color" data-color="red"></div>
-			<div class="color" data-color="green"></div>
-			<div class="color" data-color="blue"></div>
+			<div class="color" data-color="red">Rojo</div>
+			<div class="color" data-color="green">Verde</div>
+			<div class="color" data-color="blue">Azul</div>
 		</nav>
 
 		<main>Hola</main>
@@ -54,7 +54,9 @@
 			//  Al DOM: drag, dragend, dragenter, dragexit, dragleave, dragover, dragstart, drop
 			// O (objetos): -
 			const colors = document.querySelectorAll(".color");
-			const main = document.querySelector("main");
+            const main = document.querySelector("main");
+            
+            let nombreEnDrag = '';
 
 			colors.forEach((color) => {
 				color.draggable = true;
@@ -68,7 +70,9 @@
 				e.preventDefault();
                 main.style = `transition: all 0.2s ;background-color: ${e.dataTransfer.getData('color')}`;
             
-                document.querySelector('.color-dragging').classList.remove('color-dragging');
+                let el = document.querySelector('.color-dragging');
+                el.classList.remove('color-dragging');
+                el.innerHTML = nombreEnDrag;
             });
 
 			main.addEventListener("dragover", (e) => {
@@ -80,6 +84,8 @@
                 // INICIO DE LA OPERACION
                 elemento.addEventListener("dragstart", e => {
                     e.dataTransfer.setData('color', elemento.dataset.color);
+                    nombreEnDrag = elemento.innerHTML;
+                    elemento.innerHTML = '';
                 });
 
 				elemento.addEventListener("drag", (e) => {
