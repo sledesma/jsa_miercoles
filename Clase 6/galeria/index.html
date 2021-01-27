@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #zone {
+            border: 5px dotted black;
+            width: 28%;
+            height: 500px;
+            float: left;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        #galeria {
+            float: right;
+            width: 70%;
+            background-color: thistle;
+            height: 500px;
+        }
+    </style>
+</head>
+<body>
+    
+    <div id="zone">
+        Arrastra las imágenes aquí
+    </div>
+
+    <div id="galeria"></div>
+
+    <script>
+
+        const zone = document.querySelector('#zone');
+        const galeria = document.querySelector('#galeria');
+
+        /**
+         * [
+         *  {
+         *      url: '',
+         *      alt: ''
+         *  }
+         * ]
+         */
+        let fotos = [
+            { url: 'tests/perro1.jpg', alt: 'Perro1' },
+            { url: 'tests/perro2.jpg', alt: 'Perro2' },
+            { url: 'tests/perro3.jpeg', alt: 'Perro3' },
+        ];
+
+        zone.addEventListener('dragover', e => { e.preventDefault(); });
+
+        zone.addEventListener('drop', e => {
+            e.preventDefault();
+            const archivos = [...e.dataTransfer.files];
+            fotos = archivos.map(function(val){
+                return {
+                    url: URL.createObjectURL(val),
+                    alt: val.name
+                }
+            });
+
+            mapFotosToGaleria();
+        });
+
+        function mapFotosToGaleria() {
+            const frag = document.createDocumentFragment();
+            fotos.forEach(foto => {
+                const img = document.createElement('img');
+                img.src = foto.url;
+                img.alt = foto.alt;
+                img.style = 'width: 200px; height: 200px';
+                console.log(img);
+                frag.appendChild(img);
+            });
+
+            galeria.innerHTML = '';
+            galeria.appendChild(frag);
+        }
+
+        
+
+    </script>
+
+</body>
+</html>
