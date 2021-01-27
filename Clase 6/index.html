@@ -21,31 +21,28 @@
 
 			main {
 				margin-left: 20%;
+				background-color: whitesmoke;
+				height: 100vh;
 			}
 
 			.color {
 				padding: 40px;
 				text-align: center;
 				cursor: pointer;
-                transition: all 0.3s;
+				transition: all 0.3s;
 			}
 
-            .color-dragging {
-                transform: scale(1.2);
-            }
+			.color-dragging {
+                height: 0;
+                padding: 0;
+			}
 		</style>
 	</head>
 	<body>
 		<nav>
-			<div class="color" data-color="red">
-				Rojo
-			</div>
-			<div class="color" data-color="green">
-				Verde
-			</div>
-			<div class="color" data-color="blue">
-				Marron
-			</div>
+			<div class="color" data-color="red"></div>
+			<div class="color" data-color="green"></div>
+			<div class="color" data-color="blue"></div>
 		</nav>
 
 		<main>Hola</main>
@@ -56,24 +53,50 @@
 			// E (eventos):
 			//  Al DOM: drag, dragend, dragenter, dragexit, dragleave, dragover, dragstart, drop
 			// O (objetos): -
-            const colors = document.querySelectorAll('.color');
+			const colors = document.querySelectorAll(".color");
+			const main = document.querySelector("main");
 
-            colors.forEach(color => {
-                color.draggable = true;
-                color.style = `background-color: ${color.dataset.color}`;
-                addDndListeners(color);
+			colors.forEach((color) => {
+				color.draggable = true;
+				color.style = `background-color: ${color.dataset.color}`;
+				addDndListeners(color);
+			});
+
+            // FIN DE LA OPERACION
+			main.addEventListener("drop", (e) => {
+				// ACA NO TIENE QUE IR EL DROP
+				e.preventDefault();
+                main.style = `transition: all 0.2s ;background-color: ${e.dataTransfer.getData('color')}`;
+            
+                document.querySelector('.color-dragging').classList.remove('color-dragging');
             });
 
-            function addDndListeners(elemento) {
-                elemento.addEventListener('drag', e => {
-                    if(e.screenX == 0 && e.screenY == 0 && elemento.classList.contains('color-dragging')) {
-                        elemento.classList.remove('color-dragging')
-                    } else {
-                        elemento.classList.add('color-dragging')
+			main.addEventListener("dragover", (e) => {
+                e.preventDefault();
+				//console.log(e);
+			});
+
+			function addDndListeners(elemento) {
+                // INICIO DE LA OPERACION
+                elemento.addEventListener("dragstart", e => {
+                    e.dataTransfer.setData('color', elemento.dataset.color);
+                });
+
+				elemento.addEventListener("drag", (e) => {
+					if (
+						e.screenX == 0 &&
+						e.screenY == 0 &&
+						elemento.classList.contains("color-dragging")
+					) {
+						elemento.classList.remove("color-dragging");
+					} else {
+                        elemento.classList.add("color-dragging");
                     }
-                    console.log(e);
-                })
+                    
+				});
             }
+            
+
 		</script>
 	</body>
 </html>
