@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<script>
+			function xhrGetJson(url, callback) {
+				const xhr = new XMLHttpRequest();
+				xhr.responseType = "json";
+				xhr.open("GET", url);
+				xhr.send();
+				xhr.addEventListener("load", () => {
+					callback(xhr.response);
+				});
+			}
+
+			function promGetJson(url) {
+				return new Promise(function (resolver, rechazar) {
+					const xhr = new XMLHttpRequest();
+					xhr.responseType = "json";
+					xhr.open("GET", url);
+					xhr.send();
+					xhr.addEventListener("load", () => {
+						resolver(xhr.response);
+					});
+				});
+			}
+
+			/*
+			xhrGetJson(
+				"https://jsonplaceholder.typicode.com/users",
+				function (users) {
+					const usuario = 1;
+					xhrGetJson(
+						"https://jsonplaceholder.typicode.com/posts?userId=" +
+							usuario,
+						function (posts) {
+							const post = 4;
+							xhrGetJson(
+								`https://jsonplaceholder.typicode.com/comments?postId=${post}`,
+								function (comments) {
+									console.log(
+										"Comentarios del post: ",
+										comments
+									);
+								}
+							);
+						}
+					);
+				}
+            );
+            */
+
+			promGetJson("https://jsonplaceholder.typicode.com/users")
+				.then((usuarios) => {
+					const usuario = 1;
+					return promGetJson(
+						"https://jsonplaceholder.typicode.com/posts?userId=" +
+							usuario
+					);
+				})
+				.then((posts) => {
+					const post = 4;
+					return promGetJson(
+						`https://jsonplaceholder.typicode.com/comments?postId=${post}`
+					);
+				})
+				.then((comments) => {
+					console.log("Comentarios del post: ", comments);
+				});
+		</script>
+	</body>
+</html>

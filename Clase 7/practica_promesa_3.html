@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<script>
+			// Retorna un array
+			function evalFunction() {
+				const f = (x) => 2 * (x * x) + x + 1;
+				const datos = [];
+				for (let i = -500; i < 501; i++) {
+					datos.push({
+						x: i,
+						y: f(i),
+					});
+				}
+				return datos;
+			}
+
+			function getMinMax(tabla) {
+				let min, max;
+
+				for (let i = 0; i < tabla.length; i++) {
+					const element = tabla[i];
+					if (i === 0) {
+						min = element;
+						max = element;
+					} else {
+						if (element.y < min.y) {
+							min = element;
+						}
+						if (element.y > max.y) {
+							max = element;
+						}
+					}
+				}
+
+				return { min: min, max: max };
+			}
+
+			// Retorna una Promesa que, cuando resuelve, tiene un array
+			function asyncEvalFunction() {
+				return new Promise(function (resolver) {
+					const f = (x) => 2 * (x * x) + x + 1;
+					const datos = [];
+					for (let i = -500; i < 501; i++) {
+						datos.push({
+							x: i,
+							y: f(i),
+						});
+					}
+					resolver(datos);
+				});
+			}
+
+			function asyncGetMinMax(tabla) {
+				return new Promise(function (resolver) {
+					let min, max;
+
+					for (let i = 0; i < tabla.length; i++) {
+						const element = tabla[i];
+						if (i === 0) {
+							min = element;
+							max = element;
+						} else {
+							if (element.y < min.y) {
+								min = element;
+							}
+							if (element.y > max.y) {
+								max = element;
+							}
+						}
+					}
+
+					resolver({ min: min, max: max });
+				});
+			}
+
+            asyncEvalFunction()
+                .then((tabla) => {
+				    return asyncGetMinMax(tabla);
+                })
+                .then(vals => console.log(vals));
+
+            console.log('VALORES');
+		</script>
+	</body>
+</html>
