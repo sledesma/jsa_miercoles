@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <script>
+        // API Fetch representa una petición HTTP
+        // F (funciones): fetch()
+        // E (eventos): 'fetch'
+        // O (objetos): Request, Response
+
+        // 1. Uso común (función fetch())
+        // Dos casos donde NO usar fetch()
+        // 1) Contemplar estados intermedios
+        // 2) Solicitar XML
+
+        fetch('https://jsonplaceholder.typicode.com/users')
+            .then(res => res.json())
+            .then(datos => console.log(datos));
+
+        // 2. Consideraciones específicas (evento 'fetch' y los objetos Request y Response)
+
+
+    </script>
+
+</body>
+</html>
