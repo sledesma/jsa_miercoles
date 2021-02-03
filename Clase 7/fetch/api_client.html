@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        
+        
+        
+
+        const ApiClient = endpoint => ({
+            // GET /
+            all: function(callback) {
+                fetch(endpoint)
+                    .then(res => res.json())
+                    .then(callback);
+            },
+
+            // GET /id
+            get: function(id, callback) {
+                fetch(`${endpoint}/${id}`)
+                    .then(res => res.json())
+                    .then(callback);
+            },
+
+            // POST / (body)
+            post: function(body, callback) {
+                fetch(endpoint, {
+                    method: 'POST',
+                    body: body,
+                    headers: {
+                        'Content-type': 'application/json'
+                    }
+                })
+                    .then(res => res.json())
+                    .then(callback);
+            },
+
+            // PUT /id (body)
+            put: function(id, body, callback) {
+                fetch(`${endpoint}/${id}`, {
+                    method: 'PUT',
+                    body: body,
+                    headers: {
+                        'Content-type': 'application/json'
+                    }
+                })
+                    .then(res => res.json())
+                    .then(callback);
+            },
+
+            // DELETE /id
+            delete: function(id, callback) {
+                fetch(`${endpoint}/${id}`, { method: 'DELETE' })
+                    .then(res => res.json())
+                    .then(callback);
+            }
+        })
+
+    </script>
+</body>
+</html>
