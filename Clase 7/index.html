@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promesas</title>
+</head>
+<body>
+    
+
+    <script>
+
+        // Promesa
+        // API Promise
+
+        /**
+         *  UNA PROMESA HUMANA
+         * Implica tiempo (a futuro)
+         * Puede que se cumpla o no
+         * Hay un momento en el que se reduce todo a que si se cumplió o no.
+         * Hay consecuencias para cada estado (cumplida o no cumplida)
+         * */
+
+         /**
+          * UNA PROMESA JS
+          * Operación asincrónica ... (implica tiempo)
+          * puede estar resuelta o rechazada. (puede cumplirse o no)
+          * Para definir si está resuelta o rechazada, Promise evalúa un código escrito por mí.
+          * Se definen callbacks que sucederán con cada estado
+          * */
+
+        
+        /**IMPLEMENTAR UNA PROMESA**/
+
+        // 1. Crear la promesa: Escribir el código que defina cuando está resuelta o rechazada.
+        const miXhr = new Promise(function(resolver, rechazar){
+            const xhr = new XMLHttpRequest();
+            xhr.responseType = 'json';
+            xhr.open('GET', 'https://jsonplaceholder.typicode.com/users');
+            xhr.send();
+            xhr.addEventListener('load', () => {
+                resolver(xhr.response);
+            });
+        });
+
+        // 2. Usar la promesa: Asignar los callbacks a cada estado (resuelta o rechazada).
+        miXhr
+        .then(function(response){
+            // Será ejecutado cuando la promesa se resuelva ( Se llame a resolver() )
+            console.log(response);
+        })
+
+    </script>
+
+</body>
+</html>

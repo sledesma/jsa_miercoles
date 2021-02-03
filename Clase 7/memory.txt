@@ -1,0 +1,22 @@
+HEAP (Tareas inmediatas)
+[15-18] Crear variables
+[20-22] Crear el xhr para usuarios
+[23] Registrar el load de usuarios => *xhrUsuarios_Load
+
+
+CALL-STACK (Tareas pendientes)
+xhrUsuarios_Load()
+    [28] Crear la variable usuario
+    [30-32] Crear el xhr para posts
+    [33] Registra el load de posts => *xhrPosts_Load
+
+xhrPosts_Load()
+    [37] Crear la variable posts
+    [39-41] Crear el xhr para comentarios
+    [42] Registra el load de comentarios => *xhrComentarios_Load
+
+xhrComentarios_Load()
+
+
+ASINCRONICO
+xhrUsuarios_Load => xhrPosts_Load => xhrComentarios_Load

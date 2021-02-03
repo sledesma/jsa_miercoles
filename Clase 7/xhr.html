@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <button>ClickMe</button>
+
+    <script>
+        // 1. Evento (Event / EventTarget)
+        // 2. Peticiones HTTP asincrónicas (XMLHttpRequest)
+
+        const
+            USERS_URL = 'https://jsonplaceholder.typicode.com/users',
+            POSTS_URL = 'https://jsonplaceholder.typicode.com/posts',
+            COMMENTS_URL = 'https://jsonplaceholder.typicode.com/comments';
+
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET', USERS_URL);
+        xhr.send();
+        xhr.addEventListener('load', xhrUsuarios_Load);
+
+
+        // Call-Stack
+        function xhrUsuarios_Load() {
+            const usuario = 1;
+
+            const xhrPosts = new XMLHttpRequest();
+            xhrPosts.open('GET', `${POSTS_URL}?userId=${usuario}`);
+            xhrPosts.send();
+            xhrPosts.addEventListener('load', xhrPosts_Load);
+        }
+
+        function xhrPosts_Load() {
+            const post = 4
+
+            const xhrComm = new XMLHttpRequest();
+            xhrComm.open('GET', `${COMMENTS_URL}?postId=${post}`);
+            xhrComm.send();
+            xhrComm.addEventListener('load', xhrComentarios_Load)
+        }
+
+        function xhrComentarios_Load(e) {
+            console.log('Comentarios del post: ', e.target.response);
+        }
+
+
+        document.querySelector('button').addEventListener('click', () => {
+            alert('Clicked');
+        })
+
+
+
+    </script>
+</body>
+</html>

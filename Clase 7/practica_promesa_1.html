@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<script>
+			// Retorna un array
+			function evalFunction() {
+				const f = (x) => 2 * (x * x) + x + 1;
+				const datos = [];
+				for (let i = -500; i < 501; i++) {
+					datos.push({
+						x: i,
+						y: f(i),
+					});
+				}
+				return datos;
+			}
+
+			// Retorna una Promesa que, cuando resuelve, tiene un array
+			function asyncEvalFunction() {
+				return new Promise(function (resolver) {
+					const f = (x) => 2 * (x * x) + x + 1;
+					const datos = [];
+					for (let i = -500; i < 501; i++) {
+						datos.push({
+							x: i,
+							y: f(i),
+						});
+					}
+					resolver(datos);
+				});
+            }
+            
+
+            const promDatos = asyncEvalFunction();
+            promDatos.then(function(datos){
+                console.log(datos);
+            });
+            
+            console.log('Hola mundo');
+		</script>
+	</body>
+</html>
