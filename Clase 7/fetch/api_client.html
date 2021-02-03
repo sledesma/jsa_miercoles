@@ -8,10 +8,6 @@
 <body>
     <script>
 
-        
-        
-        
-
         const ApiClient = endpoint => ({
             // GET /
             all: function(callback) {
@@ -59,7 +55,12 @@
                     .then(res => res.json())
                     .then(callback);
             }
-        })
+        });
+
+        ApiClient('https://jsonplaceholder.typicode.com/users')
+            .delete(3,function(datos){
+                console.log(datos);
+            })
 
     </script>
 </body>

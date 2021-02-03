@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<script>
+			const ApiClient = (endpoint) => ({
+				// GET /
+				all: async function () {
+					const res = await fetch(endpoint);
+					const datos = await res.json();
+					return datos;
+				},
+
+				// GET /id
+				get: async function (id) {
+					const res = await fetch(`${endpoint}/${id}`);
+					const datos = await res.json();
+					return datos;
+				},
+
+				// POST / (body)
+				post: async function (body) {
+					const res = await fetch(endpoint, {
+						method: "POST",
+						body: body,
+						headers: {
+							"Content-type": "application/json",
+						},
+					});
+					const datos = await res.json();
+					return datos;
+				},
+
+				// PUT /id (body)
+				put: async function (id, body) {
+					const res = await fetch(`${endpoint}/${id}`, {
+						method: "PUT",
+						body: body,
+						headers: {
+							"Content-type": "application/json",
+						},
+					});
+					const datos = await res.json();
+					return datos;
+				},
+
+				// DELETE /id
+				delete: async function (id) {
+					const res = await fetch(`${endpoint}/${id}`, {
+						method: "DELETE",
+					});
+					const datos = await res.json();
+					return datos;
+				},
+			});
+
+			ApiClient("/posts")
+				.get(id)
+				.then((val) => console.log(val));
+		</script>
+	</body>
+</html>
