@@ -13,3 +13,4 @@
 
 // 4)
 // ¿Cómo se crea un objeto?
+// a. Standalone (Objeto llano cuyo prototipo es Object)
