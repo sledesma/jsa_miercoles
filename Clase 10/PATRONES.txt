@@ -9,10 +9,15 @@
 
 
 
-Singleton
+SINGLETON
 
 Problema: Compartir UNA sola instancia de una clase a muchos objetos
 
 Descripción: Asegurar que la clase se instancie una sola vez. 
 
 Implementación: 
+
+
+
+DECORATOR
+
