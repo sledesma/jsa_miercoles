@@ -1,0 +1,18 @@
+1. Problema que resuelven
+
+2. La descripción del patrón
+
+3. Implementación
+    3.1. UML
+    3.2. Lenguaje específico (JS)
+
+
+
+
+Singleton
+
+Problema: Compartir UNA sola instancia de una clase a muchos objetos
+
+Descripción: Asegurar que la clase se instancie una sola vez. 
+
+Implementación: 
