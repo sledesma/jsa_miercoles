@@ -7,39 +7,61 @@
 		<title>Document</title>
 	</head>
 	<body>
-		<script src="js/decorator/base.js"></script>
+		<div data-valor="mensaje"></div>
+		<button>Clickeame</button>
 		<script>
-			// Requerimientos NO funcionales
-			class ApiClient extends Decorator {
-				constructor(componente) {
-					super(componente);
-				}
 
-				async getAll() {
-					const res = await fetch(
-						"https://jsonplaceholder.typicode.com/posts"
-					);
-					const json = await res.json();
-					return json;
-				}
-			}
+			/**
+			 * EL Observer será el encargado de actualizar el
+			 * DOM
+			 */
+			class Observer {
 
-			// Requerimientos funcionales
-			class PostsList extends Componente {
 				constructor() {
-					super();
+					this.state = {}
 				}
 
-				log() {
-					console.log(this);
+				updateState(nuevoEstado = {}) {
+					/*
+					Object.assign({}, {msj: '', estado: true}, {msj: 'Hola'})
+					=
+					{ msj:'Hola', estado: true }
+					*/
+					this.state = Object.assign({}, this.state, nuevoEstado);
+
+					this.renderDom();
+				}
+
+				/**
+				 * Hay que tener
+				 * mucho cuidado con los algoritmos que se
+				 * usan para manipular el DOM. La regla
+				 * de oro es REALIZAR LA MENOR CANTIDAD
+				 * DE CAMBIOS POSIBLES EN EL DOM
+				 */ 
+				renderDom() {
+
+					document.querySelectorAll('*[data-valor]').forEach(el => {
+						el.innerHTML = this.state[el.dataset.valor];
+					});
 				}
 			}
 
-			// Implementación
-			let pl = new PostsList();
-			pl = new ApiClient(pl);
+			const ob = new Observer();
+			ob.updateState({
+				mensaje: 'Hola mundo'
+			});
 
-			console.log(pl);
+
+			/**
+			 * El Subject será un componente (botón) que indique los cambios
+			 * a hacer en el DOM
+			 */
+			class Componente {
+
+			}
+
+
 		</script>
 	</body>
 </html>
