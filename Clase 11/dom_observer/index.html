@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <script>
+
+        class Observer {
+            constructor(nombre) {
+                this.nombre = nombre;
+            }
+
+            mostrar(msj) {
+                console.log('['+this.nombre+'] ', msj);
+            }
+        }
+
+        class Observable {
+
+            constructor(observers) {
+                this.observers = observers;
+            }
+
+            notify(msj) {
+                this.observers.forEach(ob => ob.mostrar(msj));
+            }
+        }
+
+        const observer1 = new Observer('Observer de estilos');
+        const observer2 = new Observer('Observer del DOM');
+        const observer3 = new Observer('Observer de consola');
+
+        const miObservable = new Observable([
+            observer1,
+            observer2,
+            observer3
+        ]);
+
+        miObservable.notify('Hola mundo');
+
+        /**
+         * Las cuatro herramientas 'asincrónas' avanzadas, pero hermosas:
+         * 
+         * 1) Funciones
+         * 2) Generadores
+         * 3) Promesas
+         * 4) Observers
+         */
+
+    </script>
+</body>
+</html>
