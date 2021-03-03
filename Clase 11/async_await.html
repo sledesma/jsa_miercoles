@@ -7,6 +7,7 @@
 		<title>Document</title>
 	</head>
 	<body>
+		<div id="contenedor"></div>
 		<script>
 			// Una promesa es una operación asincrónica que puede ser resuelta
 			// o rechazada
@@ -57,12 +58,18 @@
 						})
 						.forEach((element) => df.appendChild(element));
 
-                    resolver(df);
+					resolver(df);
 				});
 
-			get(API_URL).then(function (datos) {
-				console.log(datos);
-			});
+			get(API_URL)
+				.then(function (datos) {
+					return mapPostToDOM(datos);
+				})
+				.then(function (domElemets) {
+					document
+						.getElementById("contenedor")
+						.appendChild(domElemets);
+				});
 		</script>
 	</body>
 </html>

@@ -1,0 +1,17 @@
+TRACE
+
+[1] Se lee la linea 14 y alamcena en API_URL la url a JSON place holder
+[2] Se lee la DECLARACION de la funcion get()
+[3] Se lee la DECLARACION de la funcion mapPostToDOM()
+[4] Se lee la DECLARACION de el .then() de get()
+[5] Se ingresa al código de la promesa de get()
+[6] Se crea la peticion XMLHttpRequest
+[7] Se asigna el responseType
+[8] Se abre la conexión
+[9] Se envía la petición
+[10] Se ESCUCHA el evento 'load'
+[*] Se espera a que ocurra el evento
+[11] Ocurrió el load
+[12] Se resolvió la promesa de get()
+[13] Se ejecuta la función en el .then()
+[14] Se muestra por consola los datos
