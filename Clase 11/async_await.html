@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<script>
+			// Una promesa es una operación asincrónica que puede ser resuelta
+			// o rechazada
+
+			const API_URL = "https://jsonplaceholder.typicode.com/posts";
+
+			/*
+        En vez de tener un Object, tengo una Promesa que, cuando se cumple,
+        tiene un Objeto.
+
+        En vez de tener un Number, tengo una Promesa que, cuando se cumple,
+        tiene un Number.
+
+        En vez de tener un EventTarget, tengo una Promesa que, cuando se cumple,
+        tiene un EventTarget
+
+        En vez de tener A, tengo una Promesa que, cuando se cumple, tiene A
+        */
+
+			const get = (url) =>
+				new Promise((resolver, rechazar) => {
+					const xhr = new XMLHttpRequest();
+					xhr.responseType = "json";
+					xhr.open("GET", url);
+					xhr.send();
+					xhr.addEventListener("load", () => {
+						resolver(xhr.response);
+					});
+				});
+
+			const mapPostToDOM = (arrayPosts = []) =>
+				new Promise((resolver, rechazar) => {
+					const df = document.createDocumentFragment();
+
+					arrayPosts
+						.map((val) => {
+							const div = document.createElement("div");
+
+							const h1 = document.createElement("h1");
+							h1.innerHTML = val.title;
+							div.appendChild(h1);
+
+							const p = document.createElement("p");
+							p.innerHTML = val.body;
+							div.appendChild(p);
+
+							return div;
+						})
+						.forEach((element) => df.appendChild(element));
+
+                    resolver(df);
+				});
+
+			get(API_URL).then(function (datos) {
+				console.log(datos);
+			});
+		</script>
+	</body>
+</html>

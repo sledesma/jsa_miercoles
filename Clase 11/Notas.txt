@@ -1,0 +1,28 @@
+Menú del día
+-----------------
+
+1) Dudas, consultas, repaso, otras prácticas, otras explicaciones de lo ya viso <=
+
+Cosas que DEBERÍA SABER SI O SI
+* ES6 (funcion flecha, const/let/var)
+* Estructura del DOM (¿Qué es el DOM? ¿Cómo se organiza? ¿Cuáles son las reglas para cambiarlo?)
+* addEventListener() / on...
+* Promise / Async / Await
+* API History / Navegación entre páginas
+* Clases y herencia de clases
+* Ámbito de variables (this)
+
+
+Cosas que ESTARIA BUENO QUE SEPA
+* String Template ES6 (`Hola ${varMundo}`)
+* Cambiar atributos, definir elementos personalizados, dataset
+* Crear mi propio EventTarget
+* XMLHttpRequest / Fetch
+* getters / setters
+* Lo básico de la API Object (Object.create() / Object.defineProperty() / Object.assign())
+* Prototipos (standalone, Object.create(), Funciones Constructoras, Herencia de prototipos)
+* Patrones de diseño !!!!!
+Angular => TypeScript => Decorator
+React => JavaScript (TS) => Composite
+
+2) API Storage (30')
