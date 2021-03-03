@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Storage :: Ejemplo para almacenar configuración</title>
+</head>
+<body>
+    
+    <script>
+
+        /**
+         * CONFIGURACION DEL SITIO
+         * titulo (string)
+         * mensaje de Bienvenida (string)
+        **/
+       
+        class Config {
+            constructor(obj = {}) {
+                this.settings = obj;
+            }
+
+            log() {
+                console.log(this.settings);
+            }
+
+            get(key) {
+                return this.settings[key];
+            }
+
+            set(key, val) {
+                this.settings[key] = val;
+            }
+        }
+
+        function getFromStorage(item, defaultVal) {
+            if(localStorage.getItem(item)){
+                console.log('[GetFromStorage] Obteniendo ',item,' desde el STORAGE');
+                return JSON.parse(localStorage.getItem(item));
+            } else {
+                console.log('[GetFromStorage] Obteniendo ',item,' desde el VALOR POR DEFECTO');
+                localStorage.setItem(item, JSON.stringify(defaultVal));
+                return defaultVal;
+            }
+        }
+
+        const config = getFromStorage('CONFIG', {});
+
+        const appConfig = new Config(config);
+
+        console.log(appConfig);
+
+    </script>
+</body>
+</html>

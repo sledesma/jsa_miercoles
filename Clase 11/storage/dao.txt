@@ -1,0 +1,6 @@
+Object (Post)
+
+Adapter (Operaciones con el Post)
+
+Data (LocalStorage)
+Data (JsonLocal)

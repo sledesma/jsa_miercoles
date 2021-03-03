@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Dom</title>
+	</head>
+	<body>
+		<input type="text" id="txtNuevaTarea" />
+		<ul id="listaTareas"></ul>
+
+		<script>
+
+            (function(){
+
+                // scope restringido
+                // NO agrego declaraciones de funciones innecesarias
+
+                const app = {
+                    /**
+                     * Campo de texto de la tarea
+                     */
+                    txtNuevaTarea: document.querySelector("#txtNuevaTarea"),
+                    /**
+                     *  Lista de todas las tareas
+                     */
+                    listaTareas: document.querySelector("#listaTareas"),
+                    /**
+                     * Variable auxiliar para el texto de la nueva tarea
+                     */
+                    nuevaTarea: "",
+                    /**
+                     * Agregar una nueva tarea
+                     */ 
+                    agregarTarea: function() {
+                        const li = document.createElement('li');
+                        li.innerHTML = this.nuevaTarea;
+                        this.listaTareas.appendChild(li);
+                    },
+                    /**
+                     * Iniciar la app (registrar los eventos)
+                     */
+                    init: function() {
+                        this.txtNuevaTarea.addEventListener("input", () => {
+                            this.nuevaTarea = this.txtNuevaTarea.value;
+                        });
+
+                        this.txtNuevaTarea.addEventListener('keypress', (e) => {
+                            if(e.key == 'Enter') {
+                                this.agregarTarea();
+                                this.txtNuevaTarea.value = '';
+                                this.txtNuevaTarea.focus();
+                            }
+                        });
+                    } 
+                }
+
+                /**
+                 * Iniciar la aplicación 
+                 */ 
+                document.addEventListener('DOMContentLoaded', () => {
+                    app.init();
+                });
+
+            })();
+		</script>
+	</body>
+</html>
